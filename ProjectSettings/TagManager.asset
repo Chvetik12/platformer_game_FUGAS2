@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Mushroom
+  - floor
   layers:
   - Default
   - TransparentFX

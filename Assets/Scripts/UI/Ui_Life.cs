@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Ui_Life : MonoBehaviour
+public class UI_Life : MonoBehaviour
 {
     [SerializeField] private GameObject[] objLife;
     [SerializeField] private GameObject panelGameOver;
-    private int life = 5;
+    private int life = 3;
 
     public void AddLife()
     {
@@ -29,13 +29,13 @@ public class Ui_Life : MonoBehaviour
         Time.timeScale = 1;// щоб грав ігрок коли, почав заново рівень грати
         SceneManager.LoadScene(1);
         //var currentSceneIndex = SceneManager.GetActiveScene().buildIndex
-          // SceneManager.LoadScene(currentSceneIndex);
+        // SceneManager.LoadScene(currentSceneIndex);
     }
     void UpdateLife()
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 3; i++)
         {
-            if(life>i)
+            if (life > i)
             {
                 objLife[i].SetActive(true);
             }

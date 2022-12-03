@@ -7,8 +7,8 @@ public class Hero : MonoBehaviour
     [SerializeField] private float speed = 5;
     [SerializeField] private float jump = 20;
     [SerializeField] private Transform sensorGround;
-    //[SerializeField] private TextMeshProUGUI textCrystal;
-    //[SerializeField] private Ui_Life Uilife;
+    [SerializeField] private TextMeshProUGUI textMushroom;
+    [SerializeField] private UI_Life Uilife;
     Rigidbody2D rb;
     private Animator anim;
     private SpriteRenderer sr;
@@ -16,7 +16,7 @@ public class Hero : MonoBehaviour
     private bool isGround;
     public int Mushroom = 0;
     //private float inputVertical;
-    //private int life = 3;
+    private int life = 3;
 
     // public int Mushroom //додатковий метод,так як він попереднь приватний
     // {
@@ -70,29 +70,29 @@ public class Hero : MonoBehaviour
         if (collision.tag == "Mushroom")
         {
             Mushroom += 10;
-            //textMushroom.text = Mushroom.ToString();
+            textMushroom.text = Mushroom.ToString();
             Destroy(collision.gameObject);
         }
-        //    else if (collision.tag == "floor" || collision.tag == "spikes")
-        //    {
-        //        Damage();
-        //        anim.SetTrigger("AnimationAstroRed");
+        else if (collision.tag == "floor")
+        {
+            Damage();
+            //anim.SetTrigger("AnimationAstroRed");
 
-        //    }
-        //}
-        //private void Damage()
-        //{
-        //    life--;
-        //    Uilife.RemuveLife();
-        //    if (life == 0)
-        //    {
-        //        Time.timeScale = 0;
-        //        Uilife.GameOver();
-        //    }
-        //}
-
+        }
+    }
+    private void Damage()
+    {
+        life--;
+        Uilife.RemuveLife();
+        if (life == 0)
+        {
+            Time.timeScale = 0;
+            Uilife.GameOver();
+        }
+        //anim.SetBool("Death", Death);
     }
 }
+
 
 
 
