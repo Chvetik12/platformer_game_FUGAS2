@@ -6,18 +6,18 @@ using UnityEngine.SceneManagement;
 public class Portal : MonoBehaviour
 {
     [SerializeField] private int idNextLevel;
-    [SerializeField] private int CrystalForNextLevel;
+    [SerializeField] private int MushroomForNextLevel;
 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Player")
+        if (collision.tag == "Player")
         {
-            //AstroMan astroMan = collision.GetComponent<AstroMan>();
-            //if(astroMan.crystal>= CrystalForNextLevel)
-            //{
-            //    SceneManager.LoadScene(idNextLevel);
-            //}
+            Hero hero = collision.GetComponent<Hero>();
+            if (hero.Mushroom >= MushroomForNextLevel)
+            {
+                SceneManager.LoadScene(idNextLevel);
+            }
         }
     }
 }

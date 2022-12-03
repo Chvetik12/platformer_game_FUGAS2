@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-
 public class Hero : MonoBehaviour
 {
     [SerializeField] private float speed = 5;
@@ -11,18 +10,18 @@ public class Hero : MonoBehaviour
     //[SerializeField] private TextMeshProUGUI textCrystal;
     //[SerializeField] private Ui_Life Uilife;
     Rigidbody2D rb;
-    //private int Crystal = 0;
     private Animator anim;
     private SpriteRenderer sr;
     private bool isRight = true;
     private bool isGround;
+    public int Mushroom = 0;
     //private float inputVertical;
-    //private int life = 5;
-    
-    //public int crystal
-    //{
-    //    get => Crystal;
-    //}
+    //private int life = 3;
+
+    // public int Mushroom //додатковий метод,так як він попереднь приватний
+    // {
+    //     get => Mushroom;
+    // }
 
     private void Awake()
     {
@@ -51,7 +50,6 @@ public class Hero : MonoBehaviour
         {
             rb.AddForce(Vector2.up * jump);
         }
-        //anim.SetFloat("speedY", rb.velocity.y);
         anim.SetBool("isGround", isGround);
     }
     void Flip(float move)
@@ -67,33 +65,33 @@ public class Hero : MonoBehaviour
             sr.flipX = false;
         }
     }
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.tag == "Crystal")
-    //    {
-    //        Crystal += 100;
-    //        textCrystal.text = Crystal.ToString();
-    //        //print("Crystal: " + Crystal);
-    //        Destroy(collision.gameObject);
-    //    }
-    //    else if (collision.tag == "floor" || collision.tag == "spikes")
-    //    {
-    //        Damage();
-    //        anim.SetTrigger("AnimationAstroRed");
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Mushroom")
+        {
+            Mushroom += 10;
+            //textMushroom.text = Mushroom.ToString();
+            Destroy(collision.gameObject);
+        }
+        //    else if (collision.tag == "floor" || collision.tag == "spikes")
+        //    {
+        //        Damage();
+        //        anim.SetTrigger("AnimationAstroRed");
 
-    //    }
-    //}
-    //private void Damage()
-    //{
-    //    life--;
-    //    Uilife.RemuveLife();
-    //    if (life == 0)
-    //    {
-    //        Time.timeScale = 0;
-    //        Uilife.GameOver();
-    //    }
-    //}
-    
+        //    }
+        //}
+        //private void Damage()
+        //{
+        //    life--;
+        //    Uilife.RemuveLife();
+        //    if (life == 0)
+        //    {
+        //        Time.timeScale = 0;
+        //        Uilife.GameOver();
+        //    }
+        //}
+
+    }
 }
 
 
