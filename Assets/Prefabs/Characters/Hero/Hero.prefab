@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2772617018835598216}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: sensorGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 2905211654715496520}
   - component: {fileID: 3536102023483841015}
   - component: {fileID: 6241145820097161042}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hero
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,3 +192,6 @@ MonoBehaviour:
   speed: 5
   jump: 20
   sensorGround: {fileID: 0}
+  Uilife: {fileID: 0}
+  snow: {fileID: 0}
+  Mushroom: 0

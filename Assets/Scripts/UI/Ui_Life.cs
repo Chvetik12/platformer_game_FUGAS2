@@ -1,12 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
-public class UI_Life : MonoBehaviour
+public class Ui_Life : MonoBehaviour
 {
     [SerializeField] private GameObject[] objLife;
     [SerializeField] private GameObject panelGameOver;
+    [SerializeField] private TextMeshProUGUI textMushroom;
+    [SerializeField] private TextMeshProUGUI textSnow;
     private int life = 3;
 
     public void AddLife()
@@ -30,6 +31,15 @@ public class UI_Life : MonoBehaviour
         SceneManager.LoadScene(1);
         //var currentSceneIndex = SceneManager.GetActiveScene().buildIndex
         // SceneManager.LoadScene(currentSceneIndex);
+    }
+    public void SetCountMushroomUI(int countMushroom)
+    {
+        textMushroom.text = countMushroom.ToString();
+    }
+
+    public void SetCountSnowUI(int countSnow)
+    {
+        textSnow.text = countSnow.ToString();
     }
     void UpdateLife()
     {

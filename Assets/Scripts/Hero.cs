@@ -2,21 +2,25 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 
+
 public class Hero : MonoBehaviour
 {
+    const int ForseSnow = 400;
     [SerializeField] private float speed = 5;
     [SerializeField] private float jump = 20;
     [SerializeField] private Transform sensorGround;
-    [SerializeField] private TextMeshProUGUI textMushroom;
-    [SerializeField] private UI_Life Uilife;
-    Rigidbody2D rb;
+   
+    [SerializeField] private Ui_Life Uilife;
+    [SerializeField] private Rigidbody2D snow;
+    private Rigidbody2D rb;
     private Animator anim;
     private SpriteRenderer sr;
     private bool isRight = true;
     private bool isGround;
-    public int Mushroom = 0;
+    public int countMushroom = 0;
     //private float inputVertical;
     private int life = 3;
+    private int countSnow = 10;
 
     // public int Mushroom //додатковий метод,так як він попереднь приватний
     // {
@@ -28,6 +32,10 @@ public class Hero : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
+    }
+    private void Start()
+    {
+        Uilife.SetCountSnowUI(countSnow);
     }
 
     void FixedUpdate()
@@ -41,6 +49,18 @@ public class Hero : MonoBehaviour
     void Update()
     {
         Jump();
+        Attack();
+    }
+
+    void Attack()
+    {
+        if(Input.GetKeyDown(KeyCode.Return)&&countSnow>0)
+        {
+            countSnow--;
+            Uilife.SetCountSnowUI(countSnow);
+            Rigidbody2D tempSnow = Instantiate(snow, transform.position, Quaternion.identity);
+            tempSnow.AddForce(new Vector2(isRight ? ForseSnow : -ForseSnow, 0));
+        }
     }
 
     void Jump()
@@ -69,16 +89,24 @@ public class Hero : MonoBehaviour
     {
         if (collision.tag == "Mushroom")
         {
-            Mushroom += 10;
-            textMushroom.text = Mushroom.ToString();
+            countMushroom += 10;
+            Uilife.SetCountMushroomUI(countMushroom);
+            Destroy(collision.gameObject);
+        }
+       
+        else if (collision.tag == "snow")
+        {
+            int count = collision.GetComponent<Item>().count;
+            countSnow += count;
+            Uilife.SetCountSnowUI(countSnow);
             Destroy(collision.gameObject);
         }
         else if (collision.tag == "floor")
         {
             Damage();
             //anim.SetTrigger("AnimationAstroRed");
-
         }
+
     }
     private void Damage()
     {

@@ -14,7 +14,7 @@ public class Portal : MonoBehaviour
         if (collision.tag == "Player")
         {
             Hero hero = collision.GetComponent<Hero>();
-            if (hero.Mushroom >= MushroomForNextLevel)
+            if (hero.countMushroom >= MushroomForNextLevel)
             {
                 SceneManager.LoadScene(idNextLevel);
             }
