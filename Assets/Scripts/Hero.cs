@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using UnityEngine.SceneManagement;
 using TMPro;
 
@@ -9,7 +10,6 @@ public class Hero : MonoBehaviour
     [SerializeField] private float speed = 5;
     [SerializeField] private float jump = 20;
     [SerializeField] private Transform sensorGround;
-   
     [SerializeField] private Ui_Life Uilife;
     [SerializeField] private Rigidbody2D snow;
     private Rigidbody2D rb;
@@ -17,10 +17,11 @@ public class Hero : MonoBehaviour
     private SpriteRenderer sr;
     private bool isRight = true;
     private bool isGround;
+    private bool isControl = true;
     public int countMushroom = 0;
     //private float inputVertical;
     private int life = 3;
-    private int countSnow = 10;
+    private int countSnow = 5;
 
     // public int Mushroom //додатковий метод,так як він попереднь приватний
     // {
@@ -37,19 +38,33 @@ public class Hero : MonoBehaviour
     {
         Uilife.SetCountSnowUI(countSnow);
     }
+    //private void LevelLoaded(Scene scene, LoadSceneMode mode)
+    //{
+    //   if(SingletonePeson.singeltone.transform == transform)
+    //    {
+    //        uilife = FindObjectOfType<Uilife>();
+    //        SetValueInUI();
+    //    }
+    //}
 
     void FixedUpdate()
     {
-        float move = Input.GetAxis("Horizontal");
-        rb.velocity = new Vector3(move * speed, rb.velocity.y, 0);
-        anim.SetFloat("SpeedX", Mathf.Abs(move));
-        Flip(move);
+        if (isControl)
+        {
+            float move = Input.GetAxis("Horizontal");
+            rb.velocity = new Vector3(move * speed, rb.velocity.y, 0);
+            anim.SetFloat("SpeedX", Mathf.Abs(move));
+            Flip(move);
+        }
     }
 
     void Update()
     {
-        Jump();
-        Attack();
+        if (isControl)
+        {
+            Jump();
+            Attack();
+        }
     }
 
     void Attack()
@@ -101,12 +116,22 @@ public class Hero : MonoBehaviour
             Uilife.SetCountSnowUI(countSnow);
             Destroy(collision.gameObject);
         }
+       
         else if (collision.tag == "floor")
         {
             Damage();
             //anim.SetTrigger("AnimationAstroRed");
         }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Skeleton")
+        {
+            Damage();
+            StartCoroutine(StopControl());
+            rb.AddForce(new Vector2(collision.GetContact(0).normal.x*500, 300));
 
+        }
     }
     private void Damage()
     {
@@ -118,6 +143,12 @@ public class Hero : MonoBehaviour
             Uilife.GameOver();
         }
         //anim.SetBool("Death", Death);
+    }
+    IEnumerator StopControl() //курутина підпрограма
+    {
+        isControl = false;
+        yield return new WaitForSeconds(1);//1сек
+        isControl = true;
     }
 }
 

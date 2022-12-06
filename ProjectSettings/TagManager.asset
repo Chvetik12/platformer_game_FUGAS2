@@ -8,6 +8,7 @@ TagManager:
   - floor
   - MushroomEnemies
   - snow
+  - Skeleton
   layers:
   - Default
   - TransparentFX
