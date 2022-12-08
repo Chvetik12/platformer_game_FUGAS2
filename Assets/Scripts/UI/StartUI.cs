@@ -5,11 +5,11 @@ public class StartUI : MonoBehaviour
 {
     public void StartGame()
     {
-       SceneManager.LoadScene(4);
+        SceneManager.LoadScene(0);
     }
     public void Level()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(3);
     }
     public void OpenRecords()
     {

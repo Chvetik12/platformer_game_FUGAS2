@@ -189,9 +189,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6861f484d0374e749e87877a800a7c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  countMushroom: 0
+  move: 0
   speed: 5
-  jump: 300
+  jump: 400
   sensorGround: {fileID: 2772617018835598216}
   Uilife: {fileID: 0}
   snow: {fileID: 7326820004031390834, guid: 1f823f7988fc14d8f8d3519addd59dc8, type: 3}
-  countMushroom: 0
+  isMobileController: 0

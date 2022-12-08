@@ -332,6 +332,12 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
+  - m_Name: spikes
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -399,7 +405,7 @@ AnimatorStateMachine:
     m_Position: {x: 200, y: 200, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3411964441277287751}
-    m_Position: {x: 200, y: 300, z: 0}
+    m_Position: {x: 440, y: -200, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6186507266699801118}
     m_Position: {x: 200, y: 400, z: 0}
@@ -417,7 +423,7 @@ AnimatorStateMachine:
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 420, y: -200, z: 0}
+  m_AnyStatePosition: {x: 430, y: 0, z: 0}
   m_EntryPosition: {x: 220, y: -310, z: 0}
   m_ExitPosition: {x: 420, y: -100, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}

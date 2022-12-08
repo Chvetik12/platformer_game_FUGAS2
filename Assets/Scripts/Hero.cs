@@ -14,7 +14,7 @@ public class Hero : MonoBehaviour
     [SerializeField] private Transform sensorGround;
     [SerializeField] private Ui_Life Uilife;
     [SerializeField] private Rigidbody2D snow;
-    [SerializeField] private bool isMobileController=false;
+    [SerializeField] private bool isMobileController = false;
     private Rigidbody2D rb;
     private Animator anim;
     private SpriteRenderer sr;
@@ -67,7 +67,7 @@ public class Hero : MonoBehaviour
     {
         if (isControl)
         {
-//            if (!isMobileController)
+            //            if (!isMobileController)
             {
                 move = Input.GetAxis("Horizontal");
             }
@@ -88,7 +88,7 @@ public class Hero : MonoBehaviour
 
     void Attack()
     {
-        if(Input.GetKeyDown(KeyCode.Return)&&countSnow>0)
+        if (Input.GetKeyDown(KeyCode.Return) && countSnow > 0)
         {
             countSnow--;
             Uilife.SetCountSnowUI(countSnow);
@@ -133,7 +133,7 @@ public class Hero : MonoBehaviour
             Destroy(collision.gameObject);
 
         }
-       
+
         else if (collision.tag == "snow")
         {
             int count = collision.GetComponent<Item>().count;
@@ -141,20 +141,20 @@ public class Hero : MonoBehaviour
             Uilife.SetCountSnowUI(countSnow);
             Destroy(collision.gameObject);
         }
-       
-        else if (collision.tag == "floor")
+
+        else if (collision.tag == "floor" || collision.tag == "spike")
         {
             Damage();
-            //anim.SetTrigger("AnimationAstroRed");
+            //anim.SetTrigger("spikes");
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Skeleton")
+        if (collision.gameObject.tag == "Skeleton")
         {
             Damage();
             StartCoroutine(StopControl());
-            rb.AddForce(new Vector2(collision.GetContact(0).normal.x*500, 300));
+            rb.AddForce(new Vector2(collision.GetContact(0).normal.x * 500, 300));
 
         }
     }

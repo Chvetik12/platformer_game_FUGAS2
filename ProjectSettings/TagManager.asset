@@ -9,6 +9,7 @@ TagManager:
   - MushroomEnemies
   - snow
   - Skeleton
+  - spike
   layers:
   - Default
   - TransparentFX

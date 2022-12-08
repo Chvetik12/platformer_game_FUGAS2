@@ -1,3 +1,4 @@
+using System.Net.Mime;
 using UnityEngine.UI;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ public class SkeletonController : MonoBehaviour
     //const int ForseSnow = 400;
     [SerializeField] private float speed = 5;
     [SerializeField] private Transform sensorGround;
-    [SerializeField] private Ui_Life Uilife;
+    [SerializeField] private Image imageHP;
     [SerializeField] private Transform markerL;
     [SerializeField] private Transform markerR;
     //[SerializeField] private Rigidbody2D snow;
@@ -14,7 +15,7 @@ public class SkeletonController : MonoBehaviour
     private Animator anim;
     private SpriteRenderer sr;
     private bool isRight = true;
-    private int hp = 3;
+    private int hp = 5;
     private int hpCurrent;
 
 
@@ -24,12 +25,12 @@ public class SkeletonController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
-        hp = hpCurrent;
+        hpCurrent = hp;
     }
 
     private void Start()
     {
-        
+
     }
 
     void FixedUpdate()
@@ -43,7 +44,7 @@ public class SkeletonController : MonoBehaviour
     void Update()
     {
 
-       //Attack();
+        //Attack();
     }
 
     //void Attack()
@@ -59,9 +60,9 @@ public class SkeletonController : MonoBehaviour
 
     void Turn()
     {
-        if(isRight)
+        if (isRight)
         {
-            if(transform.position.x > markerR.position.x)
+            if (transform.position.x > markerR.position.x)
             {
                 isRight = false;
                 sr.flipX = true;
@@ -69,21 +70,21 @@ public class SkeletonController : MonoBehaviour
         }
         else
         {
-            if(transform.position.x < markerL.position.x)
+            if (transform.position.x < markerL.position.x)
             {
                 isRight = true;
                 sr.flipX = false;
             }
         }
     }
-  
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.tag == "snow")
         {
-            //hpCurrent--;
-            //imageHP.fillAmonunt = 
-            if (hp <= 0)
+            hpCurrent--;
+            imageHP.fillAmonunt = (float)hpCurrent / hp;
+            if (hpCurrent <= 0)
             {
                 anim.SetTrigger("death");
                 Destroy(this);
@@ -91,9 +92,9 @@ public class SkeletonController : MonoBehaviour
                 Destroy(rb);
                 //Destroy(transform.parent.gameObject);
             }
-           
+
         }
     }
-   
+
 }
 
