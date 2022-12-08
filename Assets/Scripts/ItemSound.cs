@@ -1,18 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemSound : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
+{   
+    public void PlaySound()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        GetComponent<AudioSource>().Play();
+        Destroy(gameObject, 2);
     }
 }

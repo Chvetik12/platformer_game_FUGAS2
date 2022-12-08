@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class UI_Settings : MonoBehaviour
 {
-    [SerializeField] private InputField inputUserName;
+    [SerializeField] private TMP_InputField inputUserName;
     [SerializeField] private TextMeshProUGUI errorText;
 
-    private void Save()
+    public void Save()
     {
         string userName = inputUserName.text;
         if(userName.Length < 4)
@@ -25,9 +25,10 @@ public class UI_Settings : MonoBehaviour
             }
         }
 
+        SingUserData.singletone.userName = userName;
+        SceneManager.LoadScene(0);
     }
-
-    // Update is called once per frame
+  
     void Update()
     {
         

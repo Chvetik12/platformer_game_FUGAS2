@@ -7,18 +7,20 @@ using TMPro;
 public class Hero : MonoBehaviour
 {
     const int ForseSnow = 400;
+    public int countMushroom = 0;
+    public float move;
     [SerializeField] private float speed = 5;
     [SerializeField] private float jump = 20;
     [SerializeField] private Transform sensorGround;
     [SerializeField] private Ui_Life Uilife;
     [SerializeField] private Rigidbody2D snow;
+    [SerializeField] private bool isMobileController=false;
     private Rigidbody2D rb;
     private Animator anim;
     private SpriteRenderer sr;
     private bool isRight = true;
     private bool isGround;
     private bool isControl = true;
-    public int countMushroom = 0;
     //private float inputVertical;
     private int life = 3;
     private int countSnow = 5;
@@ -36,13 +38,27 @@ public class Hero : MonoBehaviour
     }
     private void Start()
     {
+        SetValueInUI();
+    }
+    void SetValueInUI()
+    {
+        Uilife.SetCountMushroomUI(countMushroom);
         Uilife.SetCountSnowUI(countSnow);
+        //Uilife.
     }
     //private void LevelLoaded(Scene scene, LoadSceneMode mode)
     //{
-    //   if(SingletonePeson.singeltone.transform == transform)
+    //    if (SingletonePeson.singeltone.transform == transform)
     //    {
-    //        uilife = FindObjectOfType<Uilife>();
+    //        Uilife = FindObjectOfType<Ui_Life>();
+    //        SetValueInUI();
+    //    }
+    //}
+    //private void LevelLoaded(Scene scene, LoadSceneMode mode)
+    //{
+    //  //  if(SingUserData.singletone.transform == transform)
+    //    {
+    //        Uilife = FindObjectOfType<Ui_Life>();
     //        SetValueInUI();
     //    }
     //}
@@ -51,7 +67,10 @@ public class Hero : MonoBehaviour
     {
         if (isControl)
         {
-            float move = Input.GetAxis("Horizontal");
+//            if (!isMobileController)
+            {
+                move = Input.GetAxis("Horizontal");
+            }
             rb.velocity = new Vector3(move * speed, rb.velocity.y, 0);
             anim.SetFloat("SpeedX", Mathf.Abs(move));
             Flip(move);
@@ -106,7 +125,13 @@ public class Hero : MonoBehaviour
         {
             countMushroom += 10;
             Uilife.SetCountMushroomUI(countMushroom);
+            ItemSound itemSound = collision.GetComponentInParent<ItemSound>();//універсальний для всіх підбирань
+            if (itemSound)
+            {
+                itemSound.PlaySound();
+            }
             Destroy(collision.gameObject);
+
         }
        
         else if (collision.tag == "snow")

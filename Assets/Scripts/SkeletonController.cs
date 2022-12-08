@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class SkeletonController : MonoBehaviour
@@ -15,13 +14,17 @@ public class SkeletonController : MonoBehaviour
     private Animator anim;
     private SpriteRenderer sr;
     private bool isRight = true;
-    private int hp = 3; 
+    private int hp = 3;
+    private int hpCurrent;
+
+
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
+        hp = hpCurrent;
     }
 
     private void Start()
@@ -78,7 +81,8 @@ public class SkeletonController : MonoBehaviour
     {
         if (collision.transform.tag == "snow")
         {
-            hp--;
+            //hpCurrent--;
+            //imageHP.fillAmonunt = 
             if (hp <= 0)
             {
                 anim.SetTrigger("death");
@@ -90,15 +94,6 @@ public class SkeletonController : MonoBehaviour
            
         }
     }
-    //private void Damage()
-    //{
-    //    hp--;
-    //    Uilife.RemuveLife();
-    //    if (hp == 0)
-    //    {
-    //        Time.timeScale = 0;
-    //        Uilife.GameOver();
-    //    }
-    //}
+   
 }
 
