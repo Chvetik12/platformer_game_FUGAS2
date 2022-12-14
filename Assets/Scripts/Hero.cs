@@ -14,7 +14,7 @@ public class Hero : MonoBehaviour
     [SerializeField] private Transform sensorGround;
     [SerializeField] private Ui_Life Uilife;
     [SerializeField] private Rigidbody2D snow;
-    [SerializeField] private bool isMobileController = false;
+    // [SerializeField] private bool isMobileController = false;
     private Rigidbody2D rb;
     private Animator anim;
     private SpriteRenderer sr;
@@ -125,7 +125,7 @@ public class Hero : MonoBehaviour
         {
             countMushroom += 10;
             Uilife.SetCountMushroomUI(countMushroom);
-            ItemSound itemSound = collision.GetComponentInParent<ItemSound>();//універсальний для всіх підбирань
+            ItemSound itemSound = collision.GetComponent<ItemSound>();//універсальний для всіх підбирань
             if (itemSound)
             {
                 itemSound.PlaySound();
@@ -142,7 +142,7 @@ public class Hero : MonoBehaviour
             Destroy(collision.gameObject);
         }
 
-        else if (collision.tag == "floor" || collision.tag == "spike")
+        else if (collision.tag == "floor" || collision.tag == "spike" || collision.tag == "fire")
         {
             Damage();
             //anim.SetTrigger("spikes");

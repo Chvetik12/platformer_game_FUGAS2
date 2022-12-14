@@ -10,6 +10,8 @@ TagManager:
   - snow
   - Skeleton
   - spike
+  - Wolf
+  - fire
   layers:
   - Default
   - TransparentFX

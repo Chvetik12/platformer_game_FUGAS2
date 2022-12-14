@@ -7,6 +7,8 @@ public class Portal : MonoBehaviour
 {
     [SerializeField] private int idNextLevel;
     [SerializeField] private int MushroomForNextLevel;
+    public GameObject panel;
+
 
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -16,8 +18,14 @@ public class Portal : MonoBehaviour
             Hero hero = collision.GetComponent<Hero>();
             if (hero.countMushroom >= MushroomForNextLevel)
             {
-                SceneManager.LoadScene(6);
+                SceneManager.LoadScene(idNextLevel);
+            }
+            else
+            {
+                Time.timeScale = 0f;
+                panel.SetActive(true);
             }
         }
     }
+
 }

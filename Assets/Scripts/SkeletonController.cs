@@ -47,17 +47,6 @@ public class SkeletonController : MonoBehaviour
         //Attack();
     }
 
-    //void Attack()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.Return) && countSnow > 0)
-    //    {
-    //        countSnow--;
-    //        Uilife.SetCountSnowUI(countSnow);
-    //        Rigidbody2D tempSnow = Instantiate(snow, transform.position, Quaternion.identity);
-    //        tempSnow.AddForce(new Vector2(isRight ? ForseSnow : -ForseSnow, 0));
-    //    }
-    //}
-
     void Turn()
     {
         if (isRight)
@@ -83,7 +72,7 @@ public class SkeletonController : MonoBehaviour
         if (collision.transform.tag == "snow")
         {
             hpCurrent--;
-            imageHP.fillAmonunt = (float)hpCurrent / hp;
+            imageHP.fillAmount = (float)hpCurrent / hp;
             if (hpCurrent <= 0)
             {
                 anim.SetTrigger("death");

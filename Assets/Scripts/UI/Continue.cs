@@ -4,9 +4,17 @@ public class Continue : MonoBehaviour
 {
     public GameObject panel;
 
-    public void ContinueGame()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Time.timeScale = 1f;
-        panel.SetActive(false);
+        if (collision.tag == "Player")
+        {
+            Time.timeScale = 1f;
+            panel.SetActive(false);
+        }
     }
+    //public void ContinueGame()
+    // {
+    //     Time.timeScale = 1f;
+    //     panel.SetActive(false);
+    // }
 }

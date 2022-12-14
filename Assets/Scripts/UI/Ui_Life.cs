@@ -28,7 +28,7 @@ public class Ui_Life : MonoBehaviour
     public void NewGame()
     {
         Time.timeScale = 1;// щоб грав ігрок коли, почав заново рівень грати
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
         //var currentSceneIndex = SceneManager.GetActiveScene().buildIndex
         // SceneManager.LoadScene(currentSceneIndex);
     }
